@@ -13,5 +13,7 @@ primary key(`id`)
 #Vào application.properties sửa:
 
 spring.datasource.url=jdbc:mysql://localhost:3306/{tên của database sử dụng}?useUnicode=yes&characterEncoding=UTF-8&useSSL=false
+
 spring.datasource.username=root
+
 spring.datasource.password={password vào server trong MySql}
