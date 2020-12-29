@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout :: head"></head>
+
+<body>
+	<nav th:replace="layout :: header"></nav>
+
+	<div class="container" id="main-content">
+		<div class="row d-flex justify-content-center">
+			<form style="min-width: 300px;" action="#" th:action="@{/pig/save}" 
+					th:object="${pig}" method="post"
+				  	novalidate="novalidate" 
+				  	oninput="eat.value=parseInt(1000)-parseInt(remain.value)">
+				<h5 class="text-center">Pig form</h5>
+
+				<input type="hidden" th:field="*{id}" />
+
+				<div class="form-group">
+					<input class="form-control" type="text" placeholder="PigId"
+						   th:field="*{pigid}" th:errorclass="field-error" />
+					<em th:if="${#fields.hasErrors('pigid')}" th:errors="*{pigid}"></em>
+				</div>
+
+				<div class="form-group">
+					<input class="form-control" type="number" placeholder="Weight(kg)"
+						   th:field="*{weight}" th:errorclass="field-error" min="0" />
+					<em th:if="${#fields.hasErrors('weight')}" th:errors="*{weight}"></em>
+				</div>
+				
+				<div class="form-group">
+					<input id="remain" class="form-control" type="number" placeholder="Remain(g)"
+						   th:field="*{remain}" th:errorclass="field-error" min="0" max="1000"/>
+					<em th:if="${#fields.hasErrors('remain')}" th:errors="*{remain}"></em>
+				</div>
+				
+				<div class="form-group">
+					<input id="eat" class="form-control" type="number" placeholder="Eat(g)=1000-Remain(g)"
+						   th:field="*{eat}" th:errorclass="field-error" />
+					<!-- <output name="eat" for="remain" class="form-control" 
+						   th:field="*{eat}" th:errorclass="field-error"></output> -->
+					<em th:if="${#fields.hasErrors('eat')}" th:errors="*{eat}"></em>
+				</div>
+
+				<div class="form-group">
+					<button type="submit" class="btn btn-block btn-primary">
+						<i class="fa fa-save"></i> Save
+					</button>
+				</div>
+			</form>
+		</div>
+	</div><!-- /.container -->
+
+	<footer th:replace="layout :: footer"></footer>
+</body>
+</html>
